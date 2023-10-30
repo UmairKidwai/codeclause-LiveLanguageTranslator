@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Language Translator</title>
+    <style>
+        /* Add some basic CSS for styling */
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Language Translator</h1>
+    
+    <label for="sourceLanguage">Select Source Language:</label>
+    <select id="sourceLanguage">
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <!-- Add more language options here -->
+    </select>
+
+    <label for="targetLanguage">Select Target Language:</label>
+    <select id="targetLanguage">
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <!-- Add more language options here -->
+    </select>
+
+    <textarea id="inputText" placeholder="Enter text to translate"></textarea>
+    <button id="translateButton">Translate</button>
+
+    <p>Translated Text:</p>
+    <p id="outputText"></p>
+
+    <script>
+        // Define translation data here (a simplified example)
+        const translations = {
+            en: {
+                es: "Hola, mundo",
+                // Add more translations here
+            },
+            es: {
+                en: "Hello, world",
+                // Add more translations here
+            },
+            // Add more language translations here
+        };
+
+        // Get references to HTML elements
+        const sourceLanguageSelect = document.getElementById("sourceLanguage");
+        const targetLanguageSelect = document.getElementById("targetLanguage");
+        const inputText = document.getElementById("inputText");
+        const translateButton = document.getElementById("translateButton");
+        const outputText = document.getElementById("outputText");
+
+        // Event listener for the Translate button
+        translateButton.addEventListener("click", () => {
+            const sourceLanguage = sourceLanguageSelect.value;
+            const targetLanguage = targetLanguageSelect.value;
+            const textToTranslate = inputText.value;
+
+            if (translations[sourceLanguage] && translations[sourceLanguage][targetLanguage]) {
+                const translatedText = translations[sourceLanguage][targetLanguage];
+                outputText.textContent = translatedText;
+            } else {
+                outputText.textContent = "Translation not available";
+            }
+        });
+    </script>
+</body>
+</html>
